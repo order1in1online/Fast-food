@@ -2068,7 +2068,7 @@ function checkExistingLogin() {
     });
 
     // Create order for online orders
-    const order = {
+    const memberOrder = {
         id: Date.now(),
         number: data.onlineOrders.length + 1,
         date: new Date().toISOString(),
@@ -2082,7 +2082,7 @@ function checkExistingLogin() {
         phone: phone
     };
 
-    data.onlineOrders.push(order);
+    data.onlineOrders.push(memberOrder);
     save();
     
     // Show success message
