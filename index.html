@@ -838,8 +838,8 @@
                         <p style="margin-top: 10px; color: var(--primary); font-weight: bold;">تێچوونی گەیاندن: <span id="deliveryFee">2000</span> دینار</p>
                     </div>
                     <div id="pickupPhoneField" style="display: none; margin-top: 10px;">
-                        <input type="text" class="form-control" id="pickupPhone" placeholder="ژمارەی مۆبایل">
-                    </div>
+    <input type="text" class="form-control" id="pickupPhone" placeholder="ژمارەی مۆبایل">
+</div>
                 </div>
 
                 <div class="cart-items" id="cartItems">
@@ -848,7 +848,7 @@
                     </div>
                 </div>
                 <div id="cartSummary" style="display: none;"></div>
-                <button class="btn btn-primary" id="checkoutBtn" style="display: none;">💰 تەواوکردنی کڕین</button>
+<button class="btn btn-primary" id="checkoutBtn" style="display: none;">💰 تەواوکردنی کڕین</button><div id="cartSummary" style="display: none;"></div>
                 <button class="btn btn-success" id="printReceiptBtn" style="display: none;">🖨️ چاپکردنی وەسڵ</button>
                 <button class="btn btn-danger" id="clearBtn" style="display: none;">🗑️ سڕینەوەی هەموو</button>
             </div>
@@ -1444,22 +1444,23 @@ function checkExistingLogin() {
             return baseUrl + '?mode=order';
         }
 
-        function copyOrderLink() {
-            const link = getOrderLink();
-            navigator.clipboard.writeText(link).then(() => {
-                alert('✅ لینک کۆپی کرا!\n' + link);
-            }).catch(() => {
-                alert('لینک: ' + link);
-            });
-        }
+        function checkForOnlineMode() {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('mode') === 'order') {
+        switchMode('customer');
+        document.getElementById('adminBtn').style.display = 'none';
+        // Hide notification badge for members
+        document.getElementById('notificationBadge').style.display = 'none';
+    }
+}
 
         function checkForOnlineMode() {
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.get('mode') === 'order') {
-                switchMode('customer');
-                document.getElementById('adminBtn').style.display = 'none';
-            }
-        }
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('mode') === 'order') {
+        switchMode('customer');
+        document.getElementById('adminBtn').style.display = 'none';
+    }
+}
 
         function checkNewOrders() {
             const currentCount = data.onlineOrders.length;
@@ -2616,3 +2617,4 @@ function checkExistingLogin() {
     </script>
 </body>
 </html>
+
